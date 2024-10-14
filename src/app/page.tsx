@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { GithubIcon, Mail, MapPin, Code, Server, Database, Cloud } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
+import { FaDiscord } from "react-icons/fa"
 
 export default function Page() {
   return (
@@ -180,6 +181,31 @@ export default function Page() {
                   <span className="text-xs text-gray-500">Currently closed source due to security purposes.</span>
                 </CardContent>
               </Card>
+              <Card className="overflow-hidden">
+                <Image
+                  src="/Minecraft.png"
+                  alt="Minecraft Logo"
+                  width={600}
+                  height={300}
+                  className="object-contain w-full h-48"
+                />
+                <CardHeader>
+                  <CardTitle>AI Agentic Minecraft Bot</CardTitle>
+                  <CardDescription>An Agentic AI-powered Minecraft Bot that plays the game all by itself.</CardDescription>  
+                </CardHeader>
+                <CardContent>
+                  <p>Utilizes real-time data to beat the game. Made with AI SDK, Node.js, Next.js, Mineflayer.js, and PostgreSQL.</p>
+                  <div className="flex mt-4 space-x-2">
+                    <Button variant="outline" className="line-through" size="sm" disabled>
+                      <GithubIcon className="mr-2 h-4 w-4" /> View Code
+                    </Button>
+                    <Button variant="outline" className="line-through" size="sm" disabled>
+                      Live Demo
+                    </Button>
+                  </div>
+                  <span className="text-xs text-gray-500">Currently a work in progress and will be released soon.</span>
+                </CardContent>
+              </Card>
             </div>
             <Button variant={"secondary"} className="mt-8" size={"lg"} asChild><a href="https://github.com/Khaogamermain01/" className="text-lg font-semibold">View All Projects</a></Button>
           </div>
@@ -197,6 +223,9 @@ export default function Page() {
                 </Button>
                 <Button variant="outline" className="bg-white" asChild>
                   <a href="https://github.com/Khaogamermain01/" className="text-[#006C67]"><GithubIcon className="mr-2 h-4 w-4" /> GitHub</a>
+                </Button>
+                <Button variant="outline" className="bg-white" asChild>
+                  <a href="https://discord.com/users/624819246177845270" className="text-[#006C67]"><FaDiscord className="mr-2 h-4 w-4" color="#5865F2" /> Discord</a>
                 </Button>
               </div>
             </div>
