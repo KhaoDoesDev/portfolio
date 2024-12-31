@@ -194,7 +194,7 @@ export default function Page() {
                   <CardDescription>An Agentic AI-powered Minecraft Bot that plays the game all by itself.</CardDescription>  
                 </CardHeader>
                 <CardContent>
-                  <p>Utilizes real-time data to beat the game. Made with AI SDK, Node.js, Next.js, Mineflayer.js, and PostgreSQL.</p>
+                  <p>Utilizes real-time data to beat the game. Made with Vercel's AI SDK, Node.js, Next.js, Mineflayer.js, and PostgreSQL.</p>
                   <div className="flex mt-4 space-x-2">
                     <Button variant="outline" className="line-through" size="sm" disabled>
                       <GithubIcon className="mr-2 h-4 w-4" /> View Code
@@ -204,6 +204,33 @@ export default function Page() {
                     </Button>
                   </div>
                   <span className="text-xs text-gray-500">Currently a work in progress and will be released soon.</span>
+                </CardContent>
+              </Card>
+              <Card className="overflow-hidden">
+                <Image
+                  src="/Minecraft.png"
+                  alt="Minecraft Logo"
+                  width={600}
+                  height={300}
+                  className="object-contain w-full h-48"
+                />
+                <CardHeader>
+                  <CardTitle>Mineslayer</CardTitle>
+                  <CardDescription>Mineslayer is a Minecraft botting library built in Typescript to make Minecraft bots using Javascript or Typescript.</CardDescription>  
+                </CardHeader>
+                <CardContent>
+                  <p>Built in Typescript with the help from the Fabric community, mcdevs (owners of <a href="https://wiki.vg/">wiki.vg</a>), and the existing project where the inspiration came from: Mineflayer.JS (<a href="https://github.com/PrismarineJS/">PrismarineJS</a> being the owners)</p>
+                  <div className="flex mt-4 space-x-2">
+                    <Button variant="outline" size="sm" asChild>
+                      <a href="https://discord.gg/p69Zu9abtE/">
+                        <FaDiscord className="mr-2 h-4 w-4" /> Join the Discord Server
+                      </a>
+                    </Button>
+                    <Button variant="outline" className="line-through" size="sm" disabled>
+                      <GithubIcon className="mr-2 h-4 w-4" /> View Code
+                    </Button>
+                  </div>
+                  <span className="text-xs text-gray-500">Currently a work in progress.</span>
                 </CardContent>
               </Card>
             </div>
@@ -222,7 +249,7 @@ export default function Page() {
                   <a href="mailto:khao@khaodoes.dev" className="text-[#006C67]"><Mail className="mr-2 h-4 w-4" /> Email Me</a>
                 </Button>
                 <Button variant="outline" className="bg-white" asChild>
-                  <a href="https://github.com/Khaogamermain01/" className="text-[#006C67]"><GithubIcon className="mr-2 h-4 w-4" /> GitHub</a>
+                  <a href="https://github.com/KhaoDoesDev/" className="text-[#006C67]"><GithubIcon className="mr-2 h-4 w-4" /> GitHub</a>
                 </Button>
                 <Button variant="outline" className="bg-white" asChild>
                   <a href="https://discord.com/users/624819246177845270" className="text-[#006C67]"><FaDiscord className="mr-2 h-4 w-4" color="#5865F2" /> Discord</a>
