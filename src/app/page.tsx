@@ -194,7 +194,7 @@ export default function Page() {
                   <CardDescription>An Agentic AI-powered Minecraft Bot that plays the game all by itself.</CardDescription>  
                 </CardHeader>
                 <CardContent>
-                  <p>Utilizes real-time data to beat the game. Made with Vercel's AI SDK, Node.js, Next.js, Mineflayer.js, and PostgreSQL.</p>
+                  <p>Utilizes real-time data to beat the game. Made with Vercel&apos;s AI SDK, Node.js, Next.js, Mineflayer.js, and PostgreSQL.</p>
                   <div className="flex mt-4 space-x-2">
                     <Button variant="outline" className="line-through" size="sm" disabled>
                       <GithubIcon className="mr-2 h-4 w-4" /> View Code
