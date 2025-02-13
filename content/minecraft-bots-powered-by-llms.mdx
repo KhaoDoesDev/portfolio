@@ -1,0 +1,99 @@
+---
+title: Minecraft Bots powered by LLMs
+date: "02-13-2025"
+description: Minecraft Bots on mineflayer powered by open-sourced LLMs like DeepSeek R1, LLaMA 3, and more.
+---
+
+Hi everyone, this is my second blog post on my portfolio.
+I initially made the blog just for this post to share my research and experience using LLMs
+and intergrating them into Minecraft bots.
+
+## About the project
+
+The project is a project that implements LLMs into controlling Minecraft bots and interacting with the environment
+inside the Minecraft server. The bot is able to follow instructions and communicate with players on the server.
+
+## Project Development
+
+I started working on this project after reading the code of MINDcraft. MINDcraft was inspired by the
+NVIDIA's Voyager project, MINDcraft and this project are both very different from that project.
+
+I already had experience with building Minecraft bots with mineflayer (a popular Minecraft bot library used to
+make Minecraft bots with high-level Javascript) previously.
+
+This project uses a similar approach to MINDcraft by using similar commands for the LLMs to interact with the Minecraft bot
+like `!nearbyBlocks({ "x": 0, "y": 0, "z": 0 })` to get nearby blocks. I've also recently seen that in the MINDcraft project,
+they optionally make the LLMs make Javascript code to run new actions on the bot that weren't there with the in built commands however it's very dangerous.
+
+Before the exclamation mark commands, the Minecraft bots actually used inbuilt tool calling / function calling inside LLMs to call the functions to move around.
+This was a really confusing process because of the Vercel AI SDK having steps, steps are basically another or multiple calls to the LLM after the first call to generate a response for the end-user.
+I really thought function calling was the best way to go about it but I was wrong and eventually went with the exclamation mark commands that MINDcraft used.
+
+Over time of development, the Minecraft bots has been given more and more functions to interact and get context of the Minecraft world and the Minecraft bot itself.
+
+## How it works
+
+The Minecraft bot is made with mineflayer, a popular Minecraft bot library that you can make Minecraft bots with high-level Javascript.
+The Vercel AI SDK is also used to integrate LLMs into the bot but any would have worked like the official Ollama SDK for JS.
+
+Here is some pseudocode of how the bot works:
+```pseudocode
+actionLogs = [] # Action logs contain what the bot has done
+chatMessages = [] # Chat messages from users
+messages = []
+event onSpawn:
+  while true:
+    messages.push({ 
+      role: "user", 
+      # The LLMs are given the botContext, chatMessages, and actionLogs
+      content: botContext + chatMessages + actionLogs 
+    })
+    response = await ai.generateMessage(messages)
+    messages.push(response)
+    if (response.containsCommands()):
+      response.commands.forEach((command, args) => {
+        commandResponse = await runCommand(command, args)
+        messages.push({ role: "assistant", content: commandResponse })
+      })
+    sendMessage(response.content)
+    # Reset all logs for next run
+    actionLogs = []
+    chatMessages = []
+    sleep(2500)
+
+event onChat:
+  chatMessages.push(message)
+
+event onDeath:
+  actionLogs.push("Bot died")
+```
+
+## Reoccurring Problems
+
+I've encountered a few problems while developing this project.
+Here are a few of them:
+
+### The bot doesn't know crafting recipes
+Sometimes the bot doesn't know how to craft a certain item even with a recipe command. 
+For example, when crafting a crafting table, it sometimes doesn't get the idea that an oak log and an oak plank aren't the same thing.
+
+### The bot gets stuck in a loop
+Sometimes the bot gets stuck in a loop and doesn't know how to move around. 
+This is because the LLMs are not able to understand the context of the bot and the Minecraft world.
+The only solution to this is to restart the bot.
+
+## Improvements for the future
+
+Currently, the Minecraft bot isn't very advanced and all pathfinding are done automatically with an algorithm like A*.
+The LLM doesn't have full control of the Minecraft bot. The LLM doesn't control or decide what way to go while navigating except
+choosing the coordinates of where to move to.
+
+The LLM doesn't actually look for a certain block and scans the entire area around it to find the block, this can't be fixed without vision
+capabilities from the LLMs but the full vision functionality on mineflayer isn't done yet.
+
+### Credits
+
+- [MINDcraft](https://github.com/kolbytn/mindcraft) [MINDcraft Blog Post](https://kolbynottingham.com/mindcraft/)
+- [mineflayer](https://github.com/PrismarineJS/mineflayer)
+- [Vercel AI SDK](https://github.com/vercel/ai)
+- [Voyager](https://voyager.minedojo.org/)

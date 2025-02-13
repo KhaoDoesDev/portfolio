@@ -1,278 +1,259 @@
-'use client'
+import { Button } from "@/components/ui/button";
+import Image from "next/image";
+import Link from "next/link";
+import * as DATA from "@/data";
+import { cn } from "@/lib/utils";
+import { Mail, TriangleAlert } from "lucide-react";
+import { TooltipProvider } from "@radix-ui/react-tooltip";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { FaDiscord, FaGithub } from "react-icons/fa";
+import { ProjectCard } from "@/components/project-card";
+import { WavingText } from "@/components/waving-text";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import Markdown from "react-markdown";
 
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { GithubIcon, Mail, MapPin, Code, Server, Database, Cloud } from "lucide-react"
-import Link from "next/link"
-import Image from "next/image"
-import { FaDiscord } from "react-icons/fa"
+/* FireMM (Software Developer) - December 2021 -> March 2024
+FireMM SMP (Minecraft Server Manager) Discontinued - April 2022 -> March 2024
+Drift Hosting (COO) Discontinued - September 2023 -> January 2024
+Skyline Hosting (Software Developer) - December 2023 -> April 2024
+Beacon Hosting (COO) - January 2024 -> January 2024 */
 
-export default function Page() {
+export default function Portfolio() {
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500">
-      <header className="px-4 lg:px-6 h-16 flex items-center bg-purple-700 sticky top-0 z-50">
-        <Link className="flex items-center justify-center" href="#">
-          <Image
-            src="https://avatars.githubusercontent.com/u/62739017?v=4"
-            alt="Khao's Avatar"
-            width={32}
-            height={32}
-            className="rounded-full"
-          />
-          <span className="ml-2 font-bold text-white">Khao&apos;s Portfolio</span>
-        </Link>
-        <nav className="ml-auto flex gap-4 sm:gap-6">
-          <Link className="text-sm font-medium hover:underline underline-offset-4 text-white" href="#skills">
-            Skills
-          </Link>
-          <Link className="text-sm font-medium hover:underline underline-offset-4 text-white" href="#projects">
-            Projects
-          </Link>
-          <Link className="text-sm font-medium hover:underline underline-offset-4 text-white" href="#contact">
-            Contact
-          </Link>
-        </nav>
-      </header>
-      <main className="flex-1">
-        <section className="w-full flex items-center justify-center py-12 md:py-24 lg:py-32 xl:py-48 bg-cover bg-center">
-          <div className="container px-4 md:px-6">
-            <div className="flex flex-col items-center space-y-4 text-center">
-              <div className="space-y-2">
-                <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none text-white shadow-text">
-                  Sawadee Krab! I&apos;m Khao
-                </h1>
-                <p className="mx-auto max-w-[700px] text-white md:text-xl shadow-text">
-                  A software engineer based in Thailand. 
-                  Building amazing products.
-                </p>
+    <main className="flex flex-col min-h-[100dvh]">
+      <section
+        id="hero"
+        className="flex w-full items-start justify-between gap-2 mb-16"
+      >
+        <div>
+          <h1 className="text-3xl sm:text-5xl xl:text-6xl/none font-bold tracking-tighter">
+            Hi, I&apos;m {DATA.name} <WavingText text="👋" />
+          </h1>
+          <p className="max-w-[600px] md:text-xl mt-2">
+            I am a software engineer. I love building random new things and
+            messing with AI and ML.
+          </p>
+        </div>
+
+				<Avatar className="size-28 border">
+					<AvatarImage alt={DATA.name} src={"/api/avatar"} />
+					<AvatarFallback />
+				</Avatar>
+      </section>
+
+      <section id="about" className="mb-16">
+        <h2 className="text-xl font-bold">About Me</h2>
+        <Markdown className="prose dark:prose-invert text-pretty  prose-a:text-blue-400 prose-a:hover:underline prose-a:font-mono text-gray-400 mt-2 prose-p:leading-[1.5]">
+          At the age of 7, I apparently decided to start coding. My first
+          projects were simple, random websites and controllers for my old TV.
+          In the past, I started working on Minecraft bots with [mineflayer](https://github.com/PrismarineJS/mineflayer)
+          which lets you code Minecraft bots with high-level JavaScript. Around
+          this time, I also started working on Next.js websites and started
+          learning how LLMs work and how to integrate them into applications.
+        </Markdown>
+      </section>
+
+      <section id="experience" className="mb-16">
+        <h2 className="text-xl font-bold mb-2">Experience</h2>
+        <TooltipProvider>
+          <div className="space-y-2">
+            {DATA.experience.map((experience, _) => (
+              <div key={_} className="flex w-full items-center justify-between">
+                <div className="flex items-center gap-4">
+                  <Image
+                    src={experience.logo}
+                    alt={experience.title}
+                    width={48}
+                    height={48}
+                    className={cn(
+                      "h-[48px] w-[48px] rounded-full bg-white",
+                      experience.discontinued && "opacity-50",
+                    )}
+                    unoptimized
+                  />
+                  <div className="flex flex-col">
+                    <h3 className="flex items-center gap-2 text-sm sm:text-lg font-bold">
+                      {experience.link ? (
+                        <Link
+                          href={experience.link}
+                          target="_blank"
+                          className="text-blue-400 hover:underline"
+                        >
+                          {experience.title}
+                        </Link>
+                      ) : (
+                        experience.title
+                      )}
+                      {experience.discontinued && (
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <TriangleAlert className="h-4 w-4 text-yellow-500" />
+                          </TooltipTrigger>
+                          <TooltipContent className="[&>a]:text-blue-400 hover:[&>a]:underline">
+                            <p>
+                              {experience.discontinued_reason ?? "Discontinued"}
+                            </p>
+                          </TooltipContent>
+                        </Tooltip>
+                      )}
+                    </h3>
+                    <p className="text-gray-400 text-sm sm:text-base">{experience.position}</p>
+                  </div>
+                </div>
+                <span className="text-gray-400 text-sm sm:text-base">
+                  {experience.start} - {experience.end}
+                </span>
               </div>
-              <div className="flex items-center justify-center space-x-4 text-white shadow-text">
-                <MapPin className="w-5 h-5" />
-                <span>Nakhon Pathom, Thailand</span>
+            ))}
+          </div>
+        </TooltipProvider>
+      </section>
+
+      <section id="education" className="mb-16">
+        <h2 className="text-xl font-bold mb-2">Education</h2>
+        <div className="space-y-2">
+          {DATA.education.map((education, _) => (
+            <div key={_} className="flex w-full items-center justify-between">
+              <div className="flex w-2/3 items-center gap-4">
+                <Image
+                  src={education.logo}
+                  alt={education.title}
+                  width={48}
+                  height={48}
+                  className="h-12 w-12 rounded-full bg-white"
+                  unoptimized
+                />
+                <div className="flex flex-col">
+                  <h3 className="flex items-center gap-2 text-sm sm:text-lg font-bold">
+                    {education.link ? (
+                      <Link
+                        href={education.link}
+                        target="_blank"
+                        className="text-blue-400 hover:underline"
+                      >
+                        {education.title}
+                      </Link>
+                    ) : (
+                      education.title
+                    )}
+                  </h3>
+                  {education.diploma && (
+                    <p className="text-gray-400">{education.diploma}</p>
+                  )}
+                </div>
               </div>
-              <Image
-                src="https://avatars.githubusercontent.com/u/62739017?v=4"
-                alt="Khao's profile"
-                width={200}
-                height={200}
-                className="rounded-full border-4 border-white shadow-lg"
-              />
+              <span className="text-gray-400 text-sm sm:text-base">
+                {education.start} - {education.end}
+              </span>
             </div>
-          </div>
-        </section>
-        <section className="w-full flex items-center justify-center py-12 md:py-24 lg:py-32 bg-white" id="skills">
-          <div className="container px-4 md:px-6">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-8 text-[#006C67]">Skills</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <Card className="bg-[#F4DECB]">
-                <CardHeader>
-                  <Code className="w-8 h-8 mb-2 text-[#006C67]" />
-                  <CardTitle>Frontend</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <ul className="list-disc list-inside">
-                    <li>React</li>
-                    <li>Next.JS</li>
-                    <li>TypeScript</li>
-                    <li>Shadcn UI</li>
-                    <li>Daisy UI</li>
-                    <li>Astro</li>
-                    <li>Tailwind CSS</li>
-                  </ul>
-                </CardContent>
-              </Card>
-              <Card className="bg-[#F4DECB]">
-                <CardHeader>
-                  <Server className="w-8 h-8 mb-2 text-[#006C67]" />
-                  <CardTitle>Backend</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <ul className="list-disc list-inside">
-                    <li>Node.js</li>
-                    <li>Express</li>
-                    <li>Python</li>
-                    <li>Java / Kotlin</li>
-                  </ul>
-                </CardContent>
-              </Card>
-              <Card className="bg-[#F4DECB]">
-                <CardHeader>
-                  <Database className="w-8 h-8 mb-2 text-[#006C67]" />
-                  <CardTitle>Databases</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <ul className="list-disc list-inside">
-                    <li>MongoDB</li>
-                    <li>PostgreSQL</li>
-                    <li>MySQL</li>
-                    <li>Redis</li>
-                  </ul>
-                </CardContent>
-              </Card>
-              <Card className="bg-[#F4DECB]">
-                <CardHeader>
-                  <Cloud className="w-8 h-8 mb-2 text-[#006C67]" />
-                  <CardTitle>DevOps</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <ul className="list-disc list-inside">
-                    <li>Docker</li>
-                    <li>GitHub</li>
-                    <li>GitLab</li>
-                    <li>Git</li>
-                    <li>CI/CD</li>
-                  </ul>
-                </CardContent>
-              </Card>
+          ))}
+        </div>
+      </section>
+
+      <section id="skills" className="mb-16">
+        <h2 className="text-xl font-bold mb-2">Skills</h2>
+        <div className="grid grid-cols-3 sm:grid-cols-5 gap-2">
+          {DATA.skills.map((skill, _) => (
+            <div
+              key={_}
+              className="flex items-center rounded-lg bg-gray-700 p-1"
+            >
+              <h3 className="flex w-full items-center gap-2 text-sm font-bold">
+                <div className="flex h-6 w-6 items-center justify-center">
+                  <Image
+                    src={skill.logo}
+                    alt={skill.title}
+                    width={24}
+                    height={24}
+                    className={cn(
+                      "h-fit w-fit",
+                      skill.logo_rounding ?? "rounded",
+                      skill.logo_background ?? "bg-transparent",
+                    )}
+                    unoptimized
+                  />
+                </div>
+                {skill.title}
+              </h3>
             </div>
-          </div>
-        </section>
-        <section className="w-full flex items-center justify-center py-12 md:py-24 lg:py-32 bg-[#F4DECB]" id="projects">
-          <div className="container flex flex-col items-center px-4 md:px-6">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-8 text-[#006C67]">Projects</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <Card className="overflow-hidden">
-                <Image
-                  src="/BeaconHosting.png"
-                  alt="Beacon Hosting"
-                  width={600}
-                  height={300}
-                  className="object-contain w-full h-48"
-                />
-                <CardHeader>
-                  <CardTitle>Beacon Hosting</CardTitle>
-                  <CardDescription>A game hosting company with a custom coded dashboard, landing page and much more.</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p>Built with React, Node.js, Next.js, Prisma ORM, and PostgreSQL. Features user authentication and game server management with a full billing panel to manage your billing cycles.</p>
-                  <div className="flex mt-4 space-x-2">
-                    <Button variant="outline" size="sm" className="line-through" disabled>
-                      <GithubIcon className="mr-2 h-4 w-4" /> View Code
-                    </Button>
-                    <Button variant="outline" size="sm" className="line-through" disabled>
-                      Live Demo
-                    </Button>
-                  </div>
-                  <span className="text-xs text-gray-500">Currently a work in progress and will be released soon.</span>
-                </CardContent>
-              </Card>
-              <Card className="overflow-hidden">
-                <Image
-                  src="/Minecraft.png"
-                  alt="Minecraft Logo"
-                  width={600}
-                  height={300}
-                  className="object-contain w-full h-48"
-                />
-                <CardHeader>
-                  <CardTitle>AI Minecraft Bot (with RLHF)</CardTitle>
-                  <CardDescription>An AI-powered Minecraft Bot that learns to play the game using Reinforcement Learning with Human Feedback (RLHF).</CardDescription>  
-                </CardHeader>
-                <CardContent>
-                  <p>Utilizes machine learning algorithms and real-time data to beat the game. Made with Tensorflow.js, Node.js, Next.js, Mineflayer.js, and PostgreSQL.</p>
-                  <div className="flex mt-4 space-x-2">
-                    <Button variant="outline" className="line-through" size="sm" disabled>
-                      <GithubIcon className="mr-2 h-4 w-4" /> View Code
-                    </Button>
-                    <Button variant="outline" className="line-through" size="sm" disabled>
-                      Live Demo
-                    </Button>
-                  </div>
-                  <span className="text-xs text-gray-500">Currently closed source due to security purposes.</span>
-                </CardContent>
-              </Card>
-              <Card className="overflow-hidden">
-                <Image
-                  src="/Minecraft.png"
-                  alt="Minecraft Logo"
-                  width={600}
-                  height={300}
-                  className="object-contain w-full h-48"
-                />
-                <CardHeader>
-                  <CardTitle>AI Agentic Minecraft Bot</CardTitle>
-                  <CardDescription>An Agentic AI-powered Minecraft Bot that plays the game all by itself.</CardDescription>  
-                </CardHeader>
-                <CardContent>
-                  <p>Utilizes real-time data to beat the game. Made with Vercel&apos;s AI SDK, Node.js, Next.js, Mineflayer.js, and PostgreSQL.</p>
-                  <div className="flex mt-4 space-x-2">
-                    <Button variant="outline" className="line-through" size="sm" disabled>
-                      <GithubIcon className="mr-2 h-4 w-4" /> View Code
-                    </Button>
-                    <Button variant="outline" className="line-through" size="sm" disabled>
-                      Live Demo
-                    </Button>
-                  </div>
-                  <span className="text-xs text-gray-500">Currently a work in progress and will be released soon.</span>
-                </CardContent>
-              </Card>
-              <Card className="overflow-hidden">
-                <Image
-                  src="/Minecraft.png"
-                  alt="Minecraft Logo"
-                  width={600}
-                  height={300}
-                  className="object-contain w-full h-48"
-                />
-                <CardHeader>
-                  <CardTitle>Mineslayer</CardTitle>
-                  <CardDescription>Mineslayer is a Minecraft botting library built in Typescript to make Minecraft bots using Javascript or Typescript.</CardDescription>  
-                </CardHeader>
-                <CardContent>
-                  <p>Built in Typescript with the help from the Fabric community, mcdevs (owners of <a href="https://wiki.vg/">wiki.vg</a>), and the existing project where the inspiration came from: Mineflayer.JS (<a href="https://github.com/PrismarineJS/">PrismarineJS</a> being the owners)</p>
-                  <div className="flex mt-4 space-x-2">
-                    <Button variant="outline" size="sm" asChild>
-                      <a href="https://discord.gg/invite/p69Zu9abtE/">
-                        <FaDiscord className="mr-2 h-4 w-4" /> Join the Discord Server
-                      </a>
-                    </Button>
-                    <Button variant="outline" className="line-through" size="sm" disabled>
-                      <GithubIcon className="mr-2 h-4 w-4" /> View Code
-                    </Button>
-                  </div>
-                  <span className="text-xs text-gray-500">Currently a work in progress.</span>
-                </CardContent>
-              </Card>
-            </div>
-            <Button variant={"secondary"} className="mt-8" size={"lg"} asChild><a href="https://github.com/Khaogamermain01/" className="text-lg font-semibold">View All Projects</a></Button>
-          </div>
-        </section>
-        <section className="w-full flex items-center justify-center py-12 md:py-24 lg:py-32 bg-[#006C67]" id="contact">
-          <div className="container px-4 md:px-6">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-8 text-white">Get in Touch</h2>
-            <div className="flex flex-col items-center space-y-4">
-              <p className="text-white text-center max-w-[600px]">
-                I&apos;m always open to new opportunities and collaborations. Feel free to reach out!
-              </p>
-              <div className="flex space-x-4">
-                <Button variant="outline" className="bg-white" asChild>
-                  <a href="mailto:khao@khaodoes.dev" className="text-[#006C67]"><Mail className="mr-2 h-4 w-4" /> Email Me</a>
-                </Button>
-                <Button variant="outline" className="bg-white" asChild>
-                  <a href="https://github.com/KhaoDoesDev/" className="text-[#006C67]"><GithubIcon className="mr-2 h-4 w-4" /> GitHub</a>
-                </Button>
-                <Button variant="outline" className="bg-white" asChild>
-                  <a href="https://discord.com/users/624819246177845270" className="text-[#006C67]"><FaDiscord className="mr-2 h-4 w-4" color="#5865F2" /> Discord</a>
-                </Button>
-              </div>
-            </div>
-          </div>
-        </section>
-      </main>
-      <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t bg-[#006C67]">
-        <p className="text-xs text-white">© {new Date().getFullYear()} Khao. All rights reserved.</p>
-        <nav className="sm:ml-auto flex gap-4 sm:gap-6">
-          <Link className="text-xs hover:underline underline-offset-4 text-white" href="#skills">
-            Skills
-          </Link>
-          <Link className="text-xs hover:underline underline-offset-4 text-white" href="#projects">
-            Projects
-          </Link>
-          <Link className="text-xs hover:underline underline-offset-4 text-white" href="#contact">
-            Contact
-          </Link>
-        </nav>
-      </footer>
-    </div>
-  )
+          ))}
+        </div>
+      </section>
+
+      <section id="projects" className="mb-16">
+        <h2 className="text-xl font-bold mb-2">My Projects</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-2">
+          {DATA.projects.map((project, _) => (
+            <ProjectCard
+              key={_}
+              title={project.title}
+              description={project.description}
+              start={project.start}
+              end={project.end}
+              tags={project.tags}
+              image={project.image}
+              video={project.video}
+              links={project.links}
+              footNote={project.footNote}
+            />
+          ))}
+        </div>
+        <div className="flex w-full justify-center">
+          <Button variant={"secondary"} className="mt-4" size={"lg"} asChild>
+            <Link
+              href="https://github.com/Khaogamermain01/"
+              className="flex gap-2 text-lg font-semibold"
+              target="_blank"
+            >
+              <FaGithub className="h-4 w-4" />
+              Check out my other projects!
+            </Link>
+          </Button>
+        </div>
+      </section>
+
+      <section id="contact" className="mb-16">
+        <h2 className="font-sans text-5xl font-bold mx-auto w-fit mb-2">Get in touch</h2>
+        <p className="text-center text-xl text-gray-400 mx-auto mb-4">
+          I&apos;m always open to new opportunities and collaborations.
+          <br />
+          Feel free to reach out!
+        </p>
+        <div className="flex flex-wrap space-x-2 w-fit mx-auto">
+          {[
+            {
+              link: "mailto:khao@khaodoes.dev",
+              icon: <Mail className="h-4 w-4" />,
+              text: "Email",
+            },
+            {
+              link: "https://github.com/KhaoDoesDev",
+              icon: <FaGithub className="h-4 w-4" />,
+              text: "GitHub",
+            },
+            {
+              link: "https://discord.com/users/624819246177845270",
+              icon: <FaDiscord color="#5865F2" className="h-4 w-4" />,
+              text: "Discord",
+            },
+          ].map((contact, _) => (
+            <Button key={_} variant={"secondary"} asChild>
+              <Link
+                href={contact.link}
+                className="space-x-2 text-lg font-semibold"
+                target="_blank"
+              >
+                {contact.icon}
+                {contact.text}
+              </Link>
+            </Button>
+          ))}
+        </div>
+      </section>
+    </main>
+  );
 }
