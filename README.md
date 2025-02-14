@@ -18,7 +18,7 @@ Huge thanks to [T3 Stack](https://create.t3.gg/) for the amazing stack/scaffoldi
 ### Backend  
 | Feature                | Description                                                                                   |
 |------------------------|-----------------------------------------------------------------------------------------------|
-| **API**                | [tRPC](https://trpc.io/)
+| **API** (Future)       | [tRPC](https://trpc.io/)
 | **Authentication**     | [Better Auth](https://better-auth.com/)
 | **Database**           | [PostgreSQL](https://www.postgresql.org/)
 | **Database ORM**       | [Drizzle ORM](https://orm.drizzle.team/)

@@ -2,7 +2,6 @@ import "./globals.css";
 
 import { type Metadata } from "next";
 
-import { TRPCReactProvider } from "@/trpc/react";
 import { Nunito } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { cn } from "@/lib/utils";
@@ -55,19 +54,17 @@ export default function RootLayout({
           nunito.className
         )}
       >
-        <TRPCReactProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="dark"
-            enableSystem
-            disableTransitionOnChange
-          >
-						<Navbar />
-            {children}
-						<Footer />
-            <SizeIndicator />
-          </ThemeProvider>
-        </TRPCReactProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Navbar />
+          {children}
+          <Footer />
+          <SizeIndicator />
+        </ThemeProvider>
       </body>
     </html>
   );
