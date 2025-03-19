@@ -205,7 +205,7 @@ export default function Portfolio() {
         <div className="flex w-full justify-center">
           <Button variant={"secondary"} className="mt-4" size={"lg"} asChild>
             <Link
-              href="https://github.com/Khaogamermain01/"
+              href="https://github.com/KhaoDoesDev/"
               className="flex gap-2 text-lg font-semibold"
               target="_blank"
             >
