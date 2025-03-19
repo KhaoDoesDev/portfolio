@@ -10,12 +10,17 @@ export const metadata = {
 export default async function Blog() {
 	const blogPosts = await getAllBlogPosts();
   return <main className="flex flex-col min-h-[100dvh]">
-		<section id="title" className="mb-16">
+		<section id="title" className="mb-14">
 			<h1 className="text-6xl font-bold">My Blog</h1>
 			<p className="text-pretty text-xl text-gray-400 mt-2">
 				My research and takes on new software, AI models, and more or things
 				about my projects.
 			</p>
+			<div className="flex flex-wrap gap-4">
+				{["rss", "atom", "json", "opml"].map((type, _) => (
+					<Link key={_} href={`/blog.${type}`} className="text-blue-500 hover:underline underline-offset-1 text-lg">{type}</Link>
+				))}
+			</div>
 		</section>
 
 		<section id="posts" className="space-y-4 mb-8">
