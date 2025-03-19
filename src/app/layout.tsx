@@ -9,6 +9,7 @@ import { SizeIndicator } from "@/components/size-indicator";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { siteURL } from "@/data";
+import { env } from "@/env";
 
 const nunito = Nunito({
   subsets: ["latin"],
@@ -63,7 +64,7 @@ export default function RootLayout({
           <Navbar />
           {children}
           <Footer />
-          <SizeIndicator />
+          {env.NODE_ENV === "development" && <SizeIndicator />}
         </ThemeProvider>
       </body>
     </html>

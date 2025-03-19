@@ -40,7 +40,7 @@ export default function Portfolio() {
         </div>
 
 				<Avatar className="size-28 border">
-					<AvatarImage alt={DATA.name} src={"/api/avatar"} />
+					<AvatarImage alt={DATA.name} src={"/api/avatar.webp"} />
 					<AvatarFallback />
 				</Avatar>
       </section>

@@ -25,7 +25,7 @@ export async function GET(req: NextRequest) {
   const title = searchParams.get('title') ?? "Khao's Portfolio";
   const name = searchParams.get('name') ?? 'Khao';
   const url = searchParams.get('url') ?? 'https://khaodoes.dev/';
-  const avatar = searchParams.get('avatar') ?? 'https://khaodoes.dev/api/avatar'; // Replace with actual avatar URL
+  const avatar = searchParams.get('avatar') ?? 'https://khaodoes.dev/api/avatar.png'; // Replace with actual avatar URL
 
   return new ImageResponse(
     (
