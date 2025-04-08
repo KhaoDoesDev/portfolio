@@ -19,29 +19,21 @@ const nunito = Nunito({
 const siteName = "Khao's Portfolio";
 const siteDescription = "I am a software engineer. I love building random new things and messing with AI and ML.";
 
-export const metadata: Metadata = {
-	metadataBase: new URL(siteURL),
-  title: {
-    default: siteName,
-    template: `%s | ${siteName}`,
-  },
-  description: siteDescription,
-	openGraph: {
-		type: "website",
-		locale: "en_US",
-		url: siteURL,
-		title: siteName,
-		description: siteDescription,
-		images: [
-			{
-				url: `${siteURL}/og?title=${encodeURIComponent(siteName)}`,
-				width: 1200,
-				height: 630,
-				alt: siteName,
-			},
-		],
-	},
-};
+// export const metadata: Metadata = {
+// 	metadataBase: new URL(siteURL),
+//   title: {
+//     default: siteName,
+//     template: `%s | ${siteName}`,
+//   },
+//   description: siteDescription,
+// 	openGraph: {
+// 		type: "website",
+// 		locale: "en_US",
+// 		url: siteURL,
+// 		title: siteName,
+// 		description: siteDescription,
+// 	},
+// };
 
 
 export default function RootLayout({

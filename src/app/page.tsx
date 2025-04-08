@@ -16,12 +16,6 @@ import { WavingText } from "@/components/waving-text";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Markdown from "react-markdown";
 
-/* FireMM (Software Developer) - December 2021 -> March 2024
-FireMM SMP (Minecraft Server Manager) Discontinued - April 2022 -> March 2024
-Drift Hosting (COO) Discontinued - September 2023 -> January 2024
-Skyline Hosting (Software Developer) - December 2023 -> April 2024
-Beacon Hosting (COO) - January 2024 -> January 2024 */
-
 export default function Portfolio() {
   return (
     <main className="flex flex-col min-h-[100dvh]">

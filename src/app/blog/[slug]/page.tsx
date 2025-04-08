@@ -1,39 +1,33 @@
-import { getBlogPost } from "@/lib/blog";
+import { getAllBlogPosts, getBlogPost } from "@/lib/blog";
 import { formatDate } from "@/lib/utils";
-import type { Metadata } from "next";
+// import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import * as DATA from "@/data";
 import { Suspense } from "react";
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string}> }): Promise<Metadata> {
-	const { slug } = await params;
-  const post = await getBlogPost(slug);
-  if (!post) return {};
-  const ogImage =
-    post.metadata.image ??
-    `${DATA.siteURL}/og?title=${encodeURIComponent(post.metadata.title)}`;
-  return {
-    title: post.metadata.title,
-    description: post.metadata.description,
-    openGraph: {
-      title: post.metadata.title,
-      description: post.metadata.description,
-      type: "article",
-      publishedTime: new Date(post.metadata.date).toISOString(),
-      url: `${DATA.siteURL}/blog/${post.slug}`,
-      images: [
-        {
-          url: ogImage,
-          width: 1200,
-          height: 630,
-          alt: post.metadata.title,
-        },
-      ],
-    },
-  };
+// export async function generateMetadata({ params }: { params: Promise<{ slug: string}> }): Promise<Metadata> {
+// 	const { slug } = await params;
+//   const post = await getBlogPost(slug);
+//   if (!post) return {};
+//   return {
+//     title: post.metadata.title,
+//     description: post.metadata.description,
+//     // openGraph: {
+//     //   title: post.metadata.title,
+//     //   description: post.metadata.description,
+//     //   type: "article",
+//     //   publishedTime: new Date(post.metadata.date).toISOString(),
+//     //   url: `${DATA.siteURL}/blog/${post.slug}`,
+//     // },
+//   };
+// }
+
+export async function generateStaticParams() {
+  const posts = await getAllBlogPosts()
+  return posts.map((post) => ({ slug: post.slug }))
 }
 
-export default async function Blog({ params }: { params: Promise<{ slug: string }> }) {
+export default async function BlogPost({ params }: { params: Promise<{ slug: string }> }) {
 	const { slug } = await params;
   const post = await getBlogPost(slug);
   if (!post) return notFound();
@@ -51,7 +45,7 @@ export default async function Blog({ params }: { params: Promise<{ slug: string 
 						datePublished: post.metadata.date,
 						dateModified: post.metadata.date,
 						description: post.metadata.description,
-						image: post.metadata.image ?? `${DATA.siteURL}/og?title=${post.metadata.title}`,
+						image: post.metadata.image ?? `${DATA.siteURL}/blog/${post.slug}/opengraph-image`,
 						url: `${DATA.siteURL}/blog/${post.slug}`,
 						author: {
 							"@type": "Person",
