@@ -12,7 +12,7 @@ export function Navbar() {
       <div className="backdrop-blur-xs flex w-fit items-center rounded-full border border-gray-400 bg-black/75 p-0.5 sm:!p-1 px-6 sm:!px-8">
         <Link href={"/"} className="mr-8 sm:flex items-center gap-2 hidden" prefetch>
           <Avatar className="size-6">
-            <AvatarImage alt={DATA.name} src={"/api/avatar.webp"} />
+            <AvatarImage alt={DATA.name} src={DATA.avatarURL} />
             <AvatarFallback />
           </Avatar>
           <span>Khao&apos;s Portfolio</span>
