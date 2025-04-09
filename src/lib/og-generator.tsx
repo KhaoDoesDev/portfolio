@@ -9,12 +9,10 @@ export const size = {
 export async function GenerateImage(params: {
 	title: string;
 }) {
-	const interBold = fetch(
-    new URL("../fonts/Inter-Bold.ttf", import.meta.url),
-  ).then((res) => res.arrayBuffer());
-  const interRegular = fetch(
-    new URL("../fonts/Inter-Regular.ttf", import.meta.url),
-  ).then((res) => res.arrayBuffer());
+	const [interBold, interRegular] = await Promise.all([
+		fetch(new URL("../fonts/Inter-Bold.otf", import.meta.url)).then((res) => res.arrayBuffer()),
+		fetch(new URL("../fonts/Inter-Regular.otf", import.meta.url)).then((res) => res.arrayBuffer())
+	]);
 
 	return new ImageResponse(
     (
@@ -64,13 +62,13 @@ export async function GenerateImage(params: {
 			fonts: [
 				{
 					name: 'InterBold',
-					data: await interBold,
+					data: interBold,
 					style: 'normal',
 					weight: 700
 				},
 				{
 					name: 'Inter',
-					data: await interRegular,
+					data: interRegular,
 					style: 'normal',
 					weight: 400
 				},
