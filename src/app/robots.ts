@@ -6,5 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
     },
     sitemap: 'https://www.khaodoes.dev/sitemap.xml',
+		host: "https://www.khaodoes.dev"
   }
 }

@@ -34,7 +34,7 @@ export default function Portfolio() {
         </div>
 
 				<Avatar className="size-28 border">
-					<AvatarImage alt={DATA.name} src={"/api/avatar.webp"} />
+					<AvatarImage alt={DATA.name} src={DATA.avatarURL} />
 					<AvatarFallback />
 				</Avatar>
       </section>

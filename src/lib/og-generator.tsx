@@ -1,3 +1,4 @@
+import { avatarURL } from "@/data";
 import { ImageResponse } from "next/og";
 
 export const size = {
@@ -46,7 +47,7 @@ export async function GenerateImage(params: {
             }}
 						width={86}
 						height={86}
-						src="https://khaodoes.dev/api/avatar.png"
+						src={avatarURL}
 						alt={`Khao's Avatar`}
           />
 
