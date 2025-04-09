@@ -1,0 +1,59 @@
+---
+title: JS Try-Catch Kinda Sucks (but Rust got it right)
+date: "04-09-2025"
+description: A rant about JavaScript error handling and how Rust makes it look easy.
+---
+
+Alright, let's talk about something that bugs me every time I write async code in JavaScript: `try-catch`.
+
+It's not *totally* useless, but man, it feels clunky. The scoping is weird, you end up nesting a bunch of logic, and half the time you're not even sure what kind of error you're catching. It's like JavaScript just hands you a mystery box and says “good luck.”
+
+Meanwhile, over in Rust land, error handling actually makes sense. They use this thing called `Result<T, E>`, and it basically forces you to deal with both success *and* failure cases explicitly. It's clean, it's predictable, and best of all, it feels like part of the language — not an afterthought.
+
+Compare that to this classic JavaScript mess:
+
+```ts
+try {
+  const data = await doSomething();
+  // do something else...
+} catch (err) {
+  // wait, what *is* this error exactly?
+}
+```
+
+Now you've got a bulky `try-catch` block, a floating variable scope, and code that gets messier the more logic you add. Quite confusing if you ask me.
+
+So here's a little helper function that has made my life a *lot* easier:
+
+```ts
+export async function safePromise<T, E = Error>(
+  promise: Promise<T>,
+): Promise<{ data: T | null; error: E | null }> {
+  try {
+    const data = await promise;
+    return { data, error: null };
+  } catch (error) {
+    return { data: null, error: error as E };
+  }
+}
+```
+
+Now instead of writing `try-catch` blocks all over the place, I can just do this:
+
+```ts
+const { data, error } = await safePromise(fetchSomething());
+
+if (error) {
+  // handle the error properly
+} else {
+  // work with the data
+}
+```
+
+Way cleaner. No more shitty nested blocks. No weird ass scoping. And it just *feels* so much nicer to use. You might also recognize this from `TanStack Query`/`React Query` if you have ever used something like that.
+
+Is it as good as Rust's `Result` type? Not quite but it gets you pretty close without switching languages. It's one of those small changes that makes your code easier to read, test, and maintain.
+
+Anyway, just wanted to share that. Little things like this here and there keep me sane when trying to write JavaScript code.
+
+Thanks for reading this random rant.

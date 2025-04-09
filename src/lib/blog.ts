@@ -80,11 +80,13 @@ export async function getBlogPost(slug: string): Promise<BlogPost | null> {
 export async function getAllBlogPosts(): Promise<BlogPost[]> {
   const mdxFiles = getMDXFiles(path.join(process.cwd(), "content"));
 
-  return Promise.all(
-    mdxFiles.map(async (file) => {
-      const slug = path.basename(file, path.extname(file));
-      const post = await getBlogPost(slug);
-      return post;
-    }).filter((post) => post !== null) as Promise<BlogPost>[],
-  );
+  return (await Promise.all(
+    mdxFiles
+			.map(async (file) => {
+				const slug = path.basename(file, path.extname(file));
+				const post = await getBlogPost(slug);
+				return post;
+			})
+			.filter((post) => post !== null) as Promise<BlogPost>[]
+  )).sort((a, b) => new Date(b.metadata.date).getTime() - new Date(a.metadata.date).getTime());
 }
