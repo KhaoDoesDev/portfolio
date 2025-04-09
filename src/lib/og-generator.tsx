@@ -10,8 +10,8 @@ export async function GenerateImage(params: {
 	title: string;
 }) {
 	const [interBold, interRegular] = await Promise.all([
-		fetch(new URL("../fonts/Inter-Bold.otf", import.meta.url)).then((res) => res.arrayBuffer()),
-		fetch(new URL("../fonts/Inter-Regular.otf", import.meta.url)).then((res) => res.arrayBuffer())
+		fetch(new URL("../fonts/Inter-Bold.woff", import.meta.url)).then((res) => res.arrayBuffer()),
+		fetch(new URL("../fonts/Inter-Regular.woff", import.meta.url)).then((res) => res.arrayBuffer())
 	]);
 
 	return new ImageResponse(
