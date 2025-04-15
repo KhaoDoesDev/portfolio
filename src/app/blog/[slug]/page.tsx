@@ -1,26 +1,10 @@
 import { getAllBlogPosts, getBlogPost } from "@/lib/blog";
 import { formatDate } from "@/lib/utils";
-// import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import * as DATA from "@/data";
 import { Suspense } from "react";
 
-// export async function generateMetadata({ params }: { params: Promise<{ slug: string}> }): Promise<Metadata> {
-// 	const { slug } = await params;
-//   const post = await getBlogPost(slug);
-//   if (!post) return {};
-//   return {
-//     title: post.metadata.title,
-//     description: post.metadata.description,
-//     // openGraph: {
-//     //   title: post.metadata.title,
-//     //   description: post.metadata.description,
-//     //   type: "article",
-//     //   publishedTime: new Date(post.metadata.date).toISOString(),
-//     //   url: `${DATA.siteURL}/blog/${post.slug}`,
-//     // },
-//   };
-// }
+export const revalidate = 3600; // Rebuild once a hour (in seconds) for note later
 
 export async function generateStaticParams() {
   const posts = await getAllBlogPosts()
