@@ -1,55 +1,67 @@
+import { Navbar } from "@/components/navbar";
 import { getAllBlogPosts, getBlogPost } from "@/lib/blog";
-import { formatDate } from "@/lib/utils";
+import Link from "next/link";
 import { notFound } from "next/navigation";
-import * as DATA from "@/data";
-import { Suspense } from "react";
 
-export const revalidate = 3600; // Rebuild once a hour (in seconds) for note later
+type Props = {
+  params: Promise<{ slug: string }>;
+};
+
+export const revalidate = 3600;
 
 export async function generateStaticParams() {
-  const posts = await getAllBlogPosts()
-  return posts.map((post) => ({ slug: post.slug }))
+  const posts = await getAllBlogPosts();
+  return posts.map((post) => ({ slug: post.slug }));
 }
 
-export default async function BlogPost({ params }: { params: Promise<{ slug: string }> }) {
-	const { slug } = await params;
+export default async function BlogPost({ params }: Props) {
+  const { slug } = await params;
   const post = await getBlogPost(slug);
+
   if (!post) return notFound();
 
   return (
-		<section id="blog">
-			<script
-				type="application/ld+json"
-				suppressHydrationWarning
-				dangerouslySetInnerHTML={{
-					__html: JSON.stringify({
-						"@context": "https://schema.org",
-						"@type": "BlogPosting",
-						headline: post.metadata.title,
-						datePublished: post.metadata.date,
-						dateModified: post.metadata.date,
-						description: post.metadata.description,
-						image: post.metadata.image ?? `${DATA.siteURL}/blog/${post.slug}/opengraph-image`,
-						url: `${DATA.siteURL}/blog/${post.slug}`,
-						author: {
-							"@type": "Person",
-							name: DATA.name,
-						},
-					}),
-				}}
-			/>
-			<h1 className="text-2xl font-semibold tracking-tighter">{post.metadata.title}</h1>
-			<div className="text-neutral-600 dark:text-neutral-400 flex gap-2 mt-2 mb-8 items-center">
-				<Suspense fallback={<p className="h-5" />}>
-					<p>{formatDate(new Date(post.metadata.date))}</p>
-				</Suspense>
-				<span className="text-xs">{post.readTime}</span>
-			</div>
+    <div className="min-h-screen bg-black font-mono text-white">
+      <Navbar />
 
-			<article
-				className="prose dark:prose-invert font-sans prose-p:leading-[2]"
-				dangerouslySetInnerHTML={{ __html: post.source }}
-			/>
-		</section>
+      <main className="mx-auto max-w-4xl px-6 pb-12">
+        <header className="mb-12">
+          <Link
+            href="/blog"
+            className="mb-4 block text-sm text-purple-400 transition-colors hover:text-purple-300"
+          >
+            ← back to blog
+          </Link>
+          <h1 className="mb-4 text-4xl font-bold md:text-5xl">
+            {post.metadata.title}
+          </h1>
+          <time className="text-gray-500">
+            {new Date(post.metadata.date).toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })}
+          </time>
+          <span className="text-sm text-gray-500 ml-2">
+            ({post.readTime})
+          </span>
+        </header>
+
+        {/* Blog Content */}
+        <article
+          className="prose prose-purple prose-invert max-w-none space-y-6 leading-relaxed text-gray-300"
+          dangerouslySetInnerHTML={{
+            __html: post.source
+          }}
+        />
+
+        <footer className="text-center text-gray-500 text-sm mt-16 space-y-4">
+          <Link href="/blog" className="hover:text-gray-400 transition-colors">
+            ← back to blogs
+          </Link>
+          <p>© {new Date(Date.now()).getFullYear()} Khao</p>
+        </footer>
+      </main>
+    </div>
   );
 }

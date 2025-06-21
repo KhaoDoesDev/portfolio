@@ -6,8 +6,6 @@ import { Nunito } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { cn } from "@/lib/utils";
 import { SizeIndicator } from "@/components/size-indicator";
-import { Navbar } from "@/components/navbar";
-import { Footer } from "@/components/footer";
 import { env } from "@/env";
 import { size } from "./opengraph-image";
 
@@ -61,7 +59,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body 
         className={cn(
-          "min-h-dvh bg-background antialiased max-w-2xl mx-auto pt-16 sm:pt-24 px-6", 
+          "min-h-dvh bg-black antialiased max-w-4xl mx-auto", 
           nunito.className
         )}
       >
@@ -71,9 +69,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Navbar />
           {children}
-          <Footer />
           {env.NODE_ENV === "development" && <SizeIndicator />}
         </ThemeProvider>
       </body>

@@ -1,16 +1,15 @@
 ---
-title: JS Try-Catch Kinda Sucks (but Rust got it right)
+title: i love rust's try catches
 date: "04-09-2025"
-description: A rant about JavaScript error handling and how Rust makes it look easy.
+description: a rant about javascript's error handling and how rust makes it so much better.
 ---
 
-Alright, let's talk about something that fucks with me every time I write async code in JavaScript: `try-catch`.
+alright, let's talk about something that fucks with me every time i write async code in javascript: `try { } catch (e) {}`.
+it isn't that useless, but i mean... it feels clunky and shit. the scoping is weird as shit, you end up nesting a shit ton of code, and half the time you're not even sure what kind of error you're catching. it's like javascript just hands you a mystery box and says “good fucking luck”.
 
-It's not *totally* useless, but man, it feels clunky and jank. The scoping is weird as shit, you end up nesting a bunch of logic, and half the time you're not even sure what kind of error you're catching. It's like JavaScript just hands you a mystery box and says “good fucking luck”.
+meanwhile, over in rust, error handling actually makes sense. they use this thing called `Result<T, E>`, and it basically forces you to deal with both success and failure cases explicitly. it's clean, predictable, and best of all, it feels like part of the language -- not a random intern's project.
 
-Meanwhile, over in Rust, error handling actually makes sense. They use this thing called `Result<T, E>`, and it basically forces you to deal with both success *and* failure cases explicitly. It's clean, it's predictable, and best of all, it feels like part of the language - not an afterthought.
-
-Compare that to this classic JavaScript shit code:
+compare that to this classic javascript shit code:
 
 ```ts
 try {
@@ -21,9 +20,9 @@ try {
 }
 ```
 
-Now you've got a bulky `try-catch` block, a floating variable scope, and code that gets messier the more logic you add. Quite confusing.
+now you've got a `try-catch` block, a floating variable scope, and code that gets messier the more logic you add. quite confusing.
 
-So here's a little helper function that has made my life a whole lot easier:
+so here's a little helper function that has made my life a whole lot easier:
 
 ```ts
 export async function safePromise<T, E = Error>(
@@ -38,7 +37,7 @@ export async function safePromise<T, E = Error>(
 }
 ```
 
-Now instead of writing `try-catch` blocks all over the place, I can just do this:
+now instead of writing `try-catch` blocks all over the place, I can just do this:
 
 ```ts
 const { data, error } = await safePromise(fetchSomething());
@@ -50,10 +49,10 @@ if (error) {
 }
 ```
 
-Way cleaner. No more random nested blocks. No weird scoping. And it just feels so much nicer to use. You might also recognize this from `TanStack Query`/`React Query` if you have ever used something like that.
+way cleaner. no more random nested blocks. no weird scoping. and it just feels so much nicer to use. you might also recognize this from `TanStack Query` / `React Query` if you have ever used something like that.
 
-Is it as good as Rust's `Result` type? Not really but it's similar. It's one of those small changes that makes your code easier to read, test, and maintain.
+is it as good as rust's `Result` type? not really but it's similar. it's one of those small things that makes your code easier to read, test, and maintain.
 
-Anyways, just wanted to share that. Little random things like this here and there keep me not going crazy when trying to write JavaScript code.
+anyways, just wanted to share that. little random things like this here and there are pretty useful when trying to write javascript code.
 
-Thanks for reading this random rant.
+thanks for reading this random rant, hope you have a decent day.

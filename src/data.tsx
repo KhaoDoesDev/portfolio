@@ -3,9 +3,11 @@ import { FaDiscord, FaGithub, FaInstagram } from "react-icons/fa";
 import React from "react";
 
 export const siteURL = "https://www.khaodoes.dev";
+export const githubURL = "https://github.com/KhaoDoesDev";
 export const avatarURL = "https://avatars.githubusercontent.com/u/62739017?v=4";
 export const timezone = "Asia/Bangkok";
 export const name = "Khao";
+export const email = "khao@khaodoes.dev";
 
 interface Experience {
   title: string;
