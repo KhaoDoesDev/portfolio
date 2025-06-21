@@ -11,16 +11,16 @@ export default function Portfolio() {
       <main className="max-w-4xl mx-auto px-6 pb-12">
         {/* Hero Section */}
         <section id="about" className="mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold mb-8">hello, i'm {DATA.name.toLowerCase()}</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-8">hello, i&apos;m {DATA.name.toLowerCase()}</h1>
 
           <div className="space-y-4 text-lg leading-relaxed">
-            <p>i'm a software engineer with a passion for building random things that i need in my daily life or i was just bored and wanted to make something.</p>
+            <p>i&apos;m a software engineer with a passion for building random things that i need in my daily life or i was just bored and wanted to make something.</p>
             <p>
               i work mainly with javascript, typescript, react, next.js, and node.js, but i enjoy exploring new technologies
-              and solving interesting problems. i'm getting in the fabricmc modding world with making random clients/mods for fun.
+              and solving interesting problems. i&apos;m getting in the fabricmc modding world with making random clients/mods for fun.
             </p>
             <p>
-              when i'm not coding, you can find me reading random papers, watching random youtube videos, or
+              when i&apos;m not coding, you can find me reading random papers, watching random youtube videos, or
               playing on a random minecraft server.
             </p>
           </div>
@@ -35,7 +35,7 @@ export default function Portfolio() {
             <Link href={DATA.githubURL} className="text-purple-400 hover:text-purple-300 underline">
               github
             </Link>
-            . i'll try to update this list when i make a random cool and interesting project but for now, most of them are private.
+            . i&apos;ll try to update this list when i make a random cool and interesting project but for now, most of them are private.
           </p>
         </section>
 
