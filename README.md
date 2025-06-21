@@ -15,14 +15,6 @@ Huge thanks to [T3 Stack](https://create.t3.gg/) for the amazing stack/scaffoldi
 | **Icon Kit**           | [Lucide](https://lucide.dev/)
 | **Language**           | [TypeScript](https://www.typescriptlang.org/)
 
-### Backend  
-| Feature                | Description                                                                                   |
-|------------------------|-----------------------------------------------------------------------------------------------|
-| **API** (Future)       | [tRPC](https://trpc.io/)
-| **Authentication**     | [Better Auth](https://better-auth.com/)
-| **Database**           | [PostgreSQL](https://www.postgresql.org/)
-| **Database ORM**       | [Drizzle ORM](https://orm.drizzle.team/)
-
 ### Development Tools  
 | Tool                  | Description                                                                                   |
 |-----------------------|-----------------------------------------------------------------------------------------------|
