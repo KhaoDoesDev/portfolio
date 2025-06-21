@@ -36,7 +36,9 @@
     "**/*.tsx",
     "**/*.cjs",
     "**/*.js",
-    ".next/types/**/*.ts"
-, "../prettier.config.js", "../next.config.js", "../drizzle.config.ts", "src/app/blog/[slug]/opengraph-image.tsx"  ],
+    ".next/types/**/*.ts",
+    "./prettier.config.js",
+    "./next.config.js"
+  ],
   "exclude": ["node_modules"]
 }
