@@ -80,5 +80,9 @@
   },
   "ct3aMetadata": {
     "initVersion": "7.38.1"
-  }
+  },
+  "trustedDependencies": [
+    "@tailwindcss/oxide",
+    "unrs-resolver"
+  ]
 }
