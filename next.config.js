@@ -12,15 +12,6 @@ const config = {
 			hmrRefreshes: true
 		}
 	},
-	images: {
-		remotePatterns: [
-			{
-				protocol: "https",
-				hostname: "avatars.githubusercontent.com",
-				pathname: "/u/62739017",
-			}
-		]
-	}
 };
 
 export default config;
