@@ -44,7 +44,7 @@ export default function Portfolio() {
           <h2 className="text-3xl font-bold mb-8">get in touch</h2>
 
           <div className="space-y-4 text-lg">
-            <p className="text-gray-300">wanna to say hello?</p>
+            <p className="text-gray-300">wanna say hello?</p>
 
             <div className="space-y-2">
               <p>
