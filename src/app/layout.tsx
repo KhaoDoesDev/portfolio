@@ -2,14 +2,14 @@ import "./globals.css";
 
 import { type Metadata } from "next";
 
-import { Nunito } from "next/font/google";
+import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { cn } from "@/lib/utils";
 import { SizeIndicator } from "@/components/size-indicator";
 import { env } from "@/env";
 import { size } from "./opengraph-image";
 
-const nunito = Nunito({
+const inter = Inter({
   subsets: ["latin"],
 });
 
@@ -60,7 +60,7 @@ export default function RootLayout({
       <body 
         className={cn(
           "min-h-dvh bg-black antialiased max-w-4xl mx-auto", 
-          nunito.className
+          inter.className
         )}
       >
         <ThemeProvider
