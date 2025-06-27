@@ -38,10 +38,7 @@ export async function markdownToHTML(markdown: string): Promise<string> {
     .use(remarkParse)
     .use(remarkRehype)
     .use(rehypePrettyCode, {
-      theme: {
-        light: "material-theme-lighter",
-        dark: "material-theme-darker",
-      },
+      theme: "one-dark-pro",
       keepBackground: false,
 			transformers: [
 				transformerCopyButton({
