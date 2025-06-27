@@ -5,7 +5,7 @@ import Link from "next/link"
 export default async function Blog() {
   const blogPosts = await getAllBlogPosts();
   return (
-    <div className="min-h-screen bg-black text-white font-mono">
+    <div className="min-h-screen bg-black text-white">
       <Navbar />
       <main className="max-w-4xl mx-auto px-6 pb-12">
         <section className="mb-16">

@@ -4,7 +4,7 @@ import Link from "next/link"
 
 export default function Portfolio() {
   return (
-    <div className="min-h-screen bg-black text-white font-mono">
+    <div className="min-h-screen bg-black text-white">
       <Navbar />
 
       {/* Main Content */}

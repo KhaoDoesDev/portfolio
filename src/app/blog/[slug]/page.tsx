@@ -21,7 +21,7 @@ export default async function BlogPost({ params }: Props) {
   if (!post) return notFound();
 
   return (
-    <div className="min-h-screen bg-black font-mono text-white">
+    <div className="min-h-screen bg-black text-white">
       <Navbar />
 
       <main className="mx-auto max-w-4xl px-6 pb-12">
@@ -49,7 +49,7 @@ export default async function BlogPost({ params }: Props) {
 
         {/* Blog Content */}
         <article
-          className="prose prose-purple prose-invert max-w-none space-y-6 leading-relaxed text-gray-300"
+          className="prose prose-invert max-w-none space-y-6 leading-relaxed text-gray-300"
           dangerouslySetInnerHTML={{
             __html: post.source
           }}
