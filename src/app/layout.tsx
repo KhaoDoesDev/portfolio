@@ -5,7 +5,6 @@ import { type Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { cn } from "@/lib/utils";
-import { SizeIndicator } from "@/components/size-indicator";
 import { size } from "./opengraph-image";
 
 const inter = Inter({
