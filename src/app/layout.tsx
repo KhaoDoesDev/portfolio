@@ -6,7 +6,6 @@ import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { cn } from "@/lib/utils";
 import { SizeIndicator } from "@/components/size-indicator";
-import { env } from "@/env";
 import { size } from "./opengraph-image";
 
 const inter = Inter({
@@ -70,7 +69,6 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
-          {env.NODE_ENV === "development" && <SizeIndicator />}
         </ThemeProvider>
       </body>
     </html>
