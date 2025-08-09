@@ -215,25 +215,25 @@ export const projects: Project[] = [
   },
 ];
 
-export const contactLinks = [
-  {
-		link: "mailto:khao@khaodoes.dev",
+export const links = {
+  email: {
+		url: "mailto:khao@khaodoes.dev",
 		icon: <Mail className="h-4 w-4" />,
 		text: "Email",
 	},
-	{
-		link: "https://github.com/KhaoDoesDev",
+	github: {
+		url: "https://github.com/KhaoDoesDev",
 		icon: <FaGithub className="h-4 w-4" />,
 		text: "GitHub",
 	},
-	{
-		link: "https://discord.com/users/624819246177845270",
+	discord: {
+		url: "https://discord.com/users/624819246177845270",
 		icon: <FaDiscord color="#5865F2" className="h-4 w-4" />,
 		text: "Discord",
 	},
-	{
-		link: "https://www.instagram.com/khaoisthebest",
+	instagram: {
+		url: "https://www.instagram.com/khaoisthebest",
 		icon: <FaInstagram className="h-4 w-4" />,
 		text: "Instagram",
 	}
-];
+};

@@ -1,3 +1,4 @@
+import { Footer } from "@/components/footer";
 import { Navbar } from "@/components/navbar"
 import { getAllBlogPosts } from "@/lib/blog";
 import Link from "next/link"
@@ -37,12 +38,7 @@ export default async function Blog() {
           </div>
         </section>
 
-        <footer className="text-center text-gray-500 text-sm mt-16 space-y-4">
-          <Link href="/" className="hover:text-gray-400 transition-colors">
-            ← back to home
-          </Link>
-          <p>© {new Date(Date.now()).getFullYear()} Khao</p>
-        </footer>
+        <Footer />
       </main>
     </div>
   )
