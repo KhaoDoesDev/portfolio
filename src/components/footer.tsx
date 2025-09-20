@@ -7,7 +7,7 @@ export function Footer({ isHome }: { isHome?: boolean }) {
       {!isHome && <Link href="/" className="transition-colors hover:text-gray-400 mb-4">
         ← back to home
       </Link>}
-      <p className="mb-6">© {new Date(Date.now()).getFullYear()} Khao</p>
+      <p className="mb-6 font-mono">© {new Date(Date.now()).getFullYear()} Khao</p>
       <div className="flex flex-wrap gap-4 justify-center">
         {Object.values(DATA.links).map(({ url, icon }, _) => (  
           <Link key={_} href={url} className="flex gap-2">

@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export function Navbar() {
   return (
-    <nav className="flex justify-end gap-6 p-6">
+    <nav className="flex justify-end gap-6 p-6 max-w-4xl mx-auto">
       <Link
         href="/#about"
         className="text-purple-400 transition-colors hover:text-purple-300"
