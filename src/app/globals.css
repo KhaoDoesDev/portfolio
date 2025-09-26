@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+.eightyeightthirtyone {
+  image-rendering: auto;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+  image-rendering: -webkit-optimize-contrast;
+  width: 88px;
+  height: 31px;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

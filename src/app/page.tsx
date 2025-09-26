@@ -36,7 +36,7 @@ export default function Portfolio() {
         <section id="contact" className="mb-16">
           <h2 className="text-3xl font-bold mb-8">get in touch</h2>
 
-          <div className="space-y-4 text-lg">
+          <div className="flex flex-col gap-4 text-lg">
             <p className="text-gray-300">wanna say hello?</p>
 
             <div className="space-y-2">
@@ -59,6 +59,8 @@ export default function Portfolio() {
                 </Link>
               </p>
             </div>
+
+            <a href="https://www.khaodoes.dev"><img src="/88x31.png" className="eightyeightthirtyone" alt="khao" /></a>
           </div>
         </section>
 
