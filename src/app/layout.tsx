@@ -65,7 +65,7 @@ export default function RootLayout({
         )}
       >
         <div
-          className="absolute inset-0 z-0 opacity-[0.02] pointer-events-none"
+          className="fixed inset-0 z-0 opacity-[0.02] pointer-events-none"
           style={{
             backgroundImage:
               "linear-gradient(rgb(255, 255, 255) 1px, transparent 1px), linear-gradient(90deg, rgb(255, 255, 255) 1px, transparent 1px)",
