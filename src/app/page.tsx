@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { usePathname, useSearchParams } from "next/navigation"
+import { usePathname } from "next/navigation"
 import { Footer } from "@/components/footer"
 import { Navbar } from "@/components/navbar"
 import * as DATA from "@/data"
@@ -11,12 +11,11 @@ export default function Portfolio() {
   const [activeSection, setActiveSection] = useState<string | null>(null)
 
   const pathname = usePathname()
-  const searchParams = useSearchParams()
 
   useEffect(() => {
     const hash = window.location.hash.replace("#", "")
     setActiveSection(hash || null)
-  }, [pathname, searchParams])
+  }, [pathname])
 
   useEffect(() => {
     const onHashChange = () => {
